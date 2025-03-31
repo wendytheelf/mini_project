@@ -1,0 +1,8 @@
+---
+title: "Mini Project"
+author: "Li Wen Hu"
+format:
+  html:
+    embedded-resources: False
+---
+
