@@ -1,0 +1,22 @@
+ project:
+  type: website
+  resources:
+    - audio
+  render:
+    - "*.qmd"
+    - "*.ipynb"
+
+ website:
+  title: "Mini Project"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+
+      - href: python.qmd
+        text: Analysis Report
+
+ format:
+  html:
+    theme: cosmo
+    toc: true

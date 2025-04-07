@@ -1,0 +1,22 @@
+---
+title: "Project Overview"
+---
+
+## Introduction
+
+Humanitarian workers have faced increasing threats in the field. Especially in recent years, ​the escalating threats and recent tragic incidents involving humanitarian aid workers underscore the critical need for people to witness the danger they are facing. In 2024, the United Nations reported that more aid workers were killed than in the previous year, with at least 281 fatalities recorded across 19 countries. This result hightlight a disturbing trend of increasing violence against those dedicated to provideing assistance in conflict zones. 
+
+According to Guardian, the conflict in Gaza has been particularly lethal for humanitarian personnel. Since October 2023, at least 333 aid workers have been killed in Israeli attacks, making it the deadliest conflict for United Nations workers in history. In Sudan, the situation is equally alarming. At least 84 humanitarian workers, all Sudanese nationals, have been killed since the conflict began in 2023. In one tragic event, the bodies of 15 emergency aid workers were recovered from a mass grave in Rafah, having been killed while attempting to save lives. These incidents highlight the extreme risks faced by aid workers in conflict zones and the urgent need for enhanced protection measures.
+
+The increasing frequency and severity of attacks on humanitarian personnel not only endanger lives but also hinder the delivery of essential aid to vulnerable populations. This alarming trend serves as a compelling motivation to analyze and understand the patterns of these incidents. By examining where, when, and how aid workers are targeted — and identifying the factors contributing to these attacks — we can shed light on the harsh realities faced by humanitarian personnel. This analysis not only reveals the increasing dangers they confront, but also serves as a call to action, raising awareness and urgency around the need for greater protection and accountability.
+
+## Objectives
+
+This project seeks to answer the key questions:
+
+* Where in the world do aid workers face the risks?
+* How have patterns of violence evolved over time?
+* Who bears the brunt of these incidents — by nationality, gender, and organizational affiliation?
+* What types of attacks are most common, and how do they vary by region and over time?
+
+By addressing these questions, the report aims to contribute to the broader conversation about humanitarian safety and operational resilience in complex and unstable environments.

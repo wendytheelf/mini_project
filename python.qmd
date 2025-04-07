@@ -1,5 +1,5 @@
 ---
-title: "A Global View of Violenace Against Aid Effort Organizations"
+title: "A Global View of Violence Against Aid Effort Organizations"
 author: "lh1078"
 format:
   html:
@@ -19,7 +19,7 @@ from vega_datasets import data
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv('./security_incidents.csv')
+df = pd.read_csv('./data/security_incidents.csv')
 
 country_counts = df.groupby('Country').agg({
     'Incident ID': 'count',
@@ -54,9 +54,9 @@ chart
 
 On the world map, a striking pattern emerges: a huge concentration of security incidents in **Central Africa** and the **Middle East**. These regions stand out as hotspots, where humanitarian workers face heightened and ongoing threats. 
 
-Smaller but still notable clusters appear in **Southern Africa**, **Central and South America**, and parts of **Southeast Asia**, suggesting that violence against aid workers is not isolated to a single region but is instead a global concern. 
+Smaller but still notable clusters appear in **Southern Africa**, **Central and South Americas**, and parts of **Asia**, suggesting that violence against aid workers is not isolated to a single region but is instead a global concern. 
 
-In contrast, well-developed regions such as **East Asia**, **Western Europe**, and **North America** show very few or no reported incidents. This stark disparity underscores how instability, conflict, and weak infrastructure contribute significantly to the vulnerability of humanitarian operations. It also suggests that the risks to aid workers are highly context-dependent, often concentrated in areas where support is most desperately needed — but least secure.
+In contrast, well-developed regions such as **East Asia**, **Western Europe**, and **North Americas** show very few or no reported incidents. This stark disparity underscores how instability, conflict, and weak infrastructure contribute significantly to the vulnerability of humanitarian operations. It also suggests that the risks to aid workers are highly context-dependent, often concentrated in areas where support is most desperately needed — but least secure.
 
 ## Who Are the Victims?
 
@@ -311,7 +311,7 @@ final_chart = alt.vconcat(
 ).resolve_scale(
     x='shared'
 ).configure_view(
-    stroke=None  # Remove borders from all charts
+    stroke=None  
 )
 
 final_chart
@@ -357,16 +357,79 @@ chart
 
 The interactive world map reveals that during peak years, Central and East Africa—particularly regions like Sudan, Afghanistan, and Somalia—experience dense clusters of incidents. Simultaneously, Syria, South Sudan and the Democratic Republic of Congo becomes another major hotspot near these years. These spatial patterns coincide with areas undergoing protracted conflicts, civil unrest, or fragile governance — all conditions that intensify risks for aid operations.
 
-In October 2024, multiple humanitarian organizations raised alarms about intensifying conflict in Sudan, escalations in Gaza and the West Bank, and displacement crises in the Sahel region. Earlier in May and June 2024, the worsening situation in eastern DRC, rising militant activity in Somalia, and flood-related displacement in South Asia contributed to an uptick in aid-related field activity — often a factor that increases exposure to risk.
+In October 2024, multiple humanitarian organizations raised alarms about intensifying conflict in Sudan, escalations in Gaza and the West Bank, and displacement crises in the Sahel region. Earlier in May and June 2024, the worsening situation in eastern DRC, rising militant activity in Somalia, and flood-related displacement in Asia contributed to an uptick in aid-related field activity — often a factor that increases exposure to risk.
 
 Looking back to July 2019, the spike in incidents aligns with a particularly violent period in Afghanistan, the ongoing civil unrest in Venezuela, and attacks on medical convoys responding to Ebola outbreaks in the DRC.
 
 These spikes underscore how the heatmap doesn't just reflect abstract data, but closely aligns with real-world crises. Humanitarian incidents are deeply embedded in the larger geopolitical landscape — and the timing of these surges can serve as a proxy for global instability.
 
+## Evolving Contexts of Violence
+
+While the number of violence incidents rise these years, the attack contexts shift as well. The density plot paints a vivid picture of how the nature of threats facing humanitarian workers has evolved. Across the board, nearly all categories of attack contexts show a general upward trend, underscoring the increasing complexity and frequency of security challenges in the field.
+
+```{python}
+#| echo: true
+#| code-fold: true
+
+df = df[df['Attack context'].notna() & (df['Attack context'] != 'Unknown')]
+
+top_attack_contexts = df['Attack context'].value_counts().index
+df = df[df['Attack context'].isin(top_attack_contexts)]
+
+plot1 = alt.Chart(df[df['Attack context'].isin(top_attack_contexts[:3])]).transform_density(
+    'Year', as_=['Year', 'density'], groupby=['Attack context'], extent=[df['Year'].min(), df['Year'].max()],
+    bandwidth=0.5
+).mark_area(
+    interpolate='basis',
+    fill='lightblue',
+    opacity=0.6
+).encode(
+    alt.X('Year:Q', title='Year'),
+    alt.Y('density:Q', title='Density', scale=alt.Scale(domain=[0, 0.18])),
+    alt.Color('Attack context:N', title='Attack Context', legend=None),
+).facet(
+    row='Attack context:N',
+    columns=3
+).properties(
+    title='Distribution of Attack Contexts Over Time'
+)
+
+plot2 = alt.Chart(df[df['Attack context'].isin(top_attack_contexts[3:])]).transform_density(
+    'Year', as_=['Year', 'density'], groupby=['Attack context'], extent=[df['Year'].min(), df['Year'].max()],
+    bandwidth=0.5  
+).mark_area(
+    interpolate='basis',
+    fill='lightblue',
+    opacity=0.6
+).encode(
+    alt.X('Year:Q', title='Year'),
+    alt.Y('density:Q', title='Density', scale=alt.Scale(domain=[0, 0.18])),
+    alt.Color('Attack context:N', title='Attack Context', legend=None),
+).facet(
+    row='Attack context:N',
+    columns=3
+)
+
+combined_plot = alt.hconcat(plot1, plot2)
+
+combined_plot.show()
+```
+
+One of the most notable surges appears in **Combat/Crossfire**, which spikes sharply in 2024 — a reflection of escalating armed conflict in multiple hotspots such as Sudan, Gaza, and the Sahel region. This suggests that more humanitarian personnel are being caught in the line of fire during active hostilities.
+
+Another striking pattern is the rise of **Mob Violence**, which climbs rapidly around 2019. This may indicate growing tension between aid operations and local communities, or it may reflect broader instability and civil unrest in regions.
+
+These dynamic trends illustrate that threats to humanitarian missions are not only increasing in volume but also diversifying in form, requiring organizations to adapt not just where they operate, but how they prepare for risk.
+
+
 ## Behind Every Data Point, a Human Story
 
 This exploration into global humanitarian incidents reveals not just patterns in data, but a deeper story of growing risk, unequal burden, and systemic vulnerability. From the clusters of violence in Central Africa and the Middle East to the growing number of attacks since 2005, the data points to a world where aid work is increasingly dangerous — especially in regions most in need of assistance.
 
-The breakdown of victims by nationality and gender shows that nationals bear the heaviest toll, often with little visibility, and that gaps in reporting leave entire groups underrepresented. Organizations like INGOs and local NGOs are on the front lines, so too are the UN that may lack the same resources or protections. The temporal and geographic spikes in incidents correlate strongly with real-world crises — proof that humanitarian safety is inseparable from the global political landscape.
+The breakdown of victims by nationality and gender shows that nationals bear the heaviest toll, often with little visibility, and that gaps in reporting leave entire groups underrepresented. Organizations like INGOs and local NGOs are on the front lines, so too are the UN that may lack the same resources or protections. 
+
+The temporal and geographic spikes in incidents correlate strongly with real-world crises — proof that humanitarian safety is inseparable from the global political landscape.
+
+Beyond who is harmed and where, the density of attack contexts over time shows a clear evolution in the nature of violence. These trends suggest that humanitarian workers face not only more frequent threats, but increasingly diverse and unpredictable ones — from being caught in crossfire to becoming direct targets of mob aggression or state repression.
 
 Ultimately, these visualizations underscore a central truth: every data point represents a person, a mission, a risk taken in the name of help. By better understanding where, when, and how humanitarian actors are under threat, we take a small but important step toward building a world where they can do their work with greater safety, dignity, and support.
