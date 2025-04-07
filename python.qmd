@@ -1,0 +1,159 @@
+---
+title: "Mini Project"
+author: "Li Wen Hu"
+format:
+  html:
+    embedded-resources: False
+---
+
+```{python}
+import altair as alt
+from vega_datasets import data
+import pandas as pd
+```
+
+```{python}
+import pandas as pd
+
+df = pd.read_csv('./security_incidents.csv')
+```
+
+## World Map of Security Incidents
+
+```{python}
+country_counts = df.groupby('Country').agg({
+    'Incident ID': 'count',
+    'Latitude': 'mean',   # We'll use the average lat/lon for each country as an approximate centroid
+    'Longitude': 'mean'
+}).reset_index().rename(columns={'Incident ID': 'Incident Count'})
+
+# Step 3: Load world map data
+world_map = alt.topo_feature('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json', 'countries')
+
+# Step 4: Create base map
+base = alt.Chart(world_map).mark_geoshape(
+    fill='lightgray',
+    stroke='white'
+).properties(
+    width=700,
+    height=500
+).project('equalEarth')
+
+# Step 5: Add bubbles sized by incident count
+bubbles = alt.Chart(country_counts).mark_circle(opacity=0.6, color='firebrick').encode(
+    longitude='Longitude:Q',
+    latitude='Latitude:Q',
+    size=alt.Size('Incident Count:Q', scale=alt.Scale(range=[10, 1000]), legend=alt.Legend(title="Incident Count")),
+    tooltip=['Country:N', 'Incident Count:Q']
+)
+
+# Step 6: Combine map and bubbles
+chart = base + bubbles
+
+chart
+
+```
+
+```{python}
+import pandas as pd
+import altair as alt
+
+# Convert types just in case
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+df['Month'] = pd.to_numeric(df['Month'], errors='coerce')
+
+# --- Heatmap Data
+heatmap_data = df.groupby(['Year', 'Month']).size().reset_index(name='Incident Count')
+
+# --- Totals per Year
+year_totals = df.groupby('Year').size().reset_index(name='Total Incidents')
+
+# --- Totals per Month
+month_totals = df.groupby('Month').size().reset_index(name='Total Incidents')
+
+# Sort months as 1 to 12 for consistency
+month_order = list(range(1, 13))
+
+# --- Heatmap: center
+heatmap = alt.Chart(heatmap_data).mark_rect().encode(
+    x=alt.X('Year:O', title='Year'),
+    y=alt.Y('Month:O', sort=month_order, title='Month'),
+    color=alt.Color('Incident Count:Q', scale=alt.Scale(scheme='reds'), title='Incidents'),
+    tooltip=['Year:O', 'Month:O', 'Incident Count:Q']
+).properties(width=500, height=300)
+
+# --- Transparent spacer (dummy chart to offset left)
+spacer = alt.Chart(pd.DataFrame({'x': [0]})).mark_point(opacity=0).encode(
+    x=alt.X('x:Q', axis=None)
+).properties(width=100, height=100)
+  # width must match left_bar
+
+# --- Top bar chart: Incidents by Year (aligned with heatmap x-axis)
+top_bar = alt.Chart(year_totals).mark_bar(color='steelblue').encode(
+    x=alt.X('Year:O', title=None),  # Must match heatmap x
+    y=alt.Y('Total Incidents:Q', title='Incidents')
+).properties(width=500, height=100)
+
+# --- Left bar chart: Incidents by Month (flipped to match heatmap y-axis)
+left_bar = alt.Chart(month_totals).mark_bar(color='steelblue').encode(
+    y=alt.Y('Month:O', sort=month_order, title=None),  # Must match heatmap y
+    x=alt.X('Total Incidents:Q', title='Incidents', scale=alt.Scale(reverse=True))  # Reverse for 180 flip
+).properties(width=100, height=300)
+
+# --- Middle row: left + heatmap
+middle = alt.hconcat(
+    left_bar,
+    heatmap
+).resolve_scale(
+    y='shared'
+)
+
+top_row = alt.hconcat(
+    spacer,
+    top_bar
+)
+
+# --- Final layout: top + (left + heatmap)
+final_chart = alt.vconcat(
+    top_row,
+    middle
+).resolve_scale(
+    x='shared'
+).configure_view(
+    stroke=None  # Remove borders from all charts
+)
+
+final_chart
+```
+
+```{python}
+# Select organization columns + Year
+org_cols = ['UN', 'INGO', 'ICRC', 'NRCS and IFRC', 'NNGO', 'Other']
+df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
+org_data = df[['Year'] + org_cols].copy()
+
+# Melt to long format
+org_long = org_data.melt(id_vars='Year', var_name='Organization', value_name='Attacked')
+
+# Keep only incidents where that org was attacked (i.e., value == 1)
+org_long = org_long[org_long['Attacked'] == 1]
+
+# Group by Year and Organization
+org_counts = org_long.groupby(['Year', 'Organization']).size().reset_index(name='Incident Count')
+
+chart = alt.Chart(org_counts).mark_line(point=True).encode(
+    x=alt.X('Year:O', title='Year'),
+    y=alt.Y('Incident Count:Q', title='Incidents'),
+    color=alt.Color('Organization:N', title='Organization'),
+    tooltip=['Year:O', 'Organization:N', 'Incident Count:Q']
+).properties(
+    width=600,
+    height=400,
+    title='Organization Attacks Over Time'
+)
+
+chart
+
+```
+
+

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Li Wen Hu">
+
+<title>Mini Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="python_files/libs/clipboard/clipboard.min.js"></script>
+<script src="python_files/libs/quarto-html/quarto.js"></script>
+<script src="python_files/libs/quarto-html/popper.min.js"></script>
+<script src="python_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="python_files/libs/quarto-html/anchor.min.js"></script>
+<link href="python_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="python_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="python_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="python_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="python_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Mini Project</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Li Wen Hu </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> vega_datasets <span class="im">import</span> data</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'./security_incidents.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="world-map-of-security-incidents" class="level2">
+<h2 class="anchored" data-anchor-id="world-map-of-security-incidents">World Map of Security Incidents</h2>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>country_counts <span class="op">=</span> df.groupby(<span class="st">'Country'</span>).agg({</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Incident ID'</span>: <span class="st">'count'</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Latitude'</span>: <span class="st">'mean'</span>,   <span class="co"># We'll use the average lat/lon for each country as an approximate centroid</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Longitude'</span>: <span class="st">'mean'</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}).reset_index().rename(columns<span class="op">=</span>{<span class="st">'Incident ID'</span>: <span class="st">'Incident Count'</span>})</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Load world map data</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>world_map <span class="op">=</span> alt.topo_feature(<span class="st">'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'</span>, <span class="st">'countries'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Create base map</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> alt.Chart(world_map).mark_geoshape(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    fill<span class="op">=</span><span class="st">'lightgray'</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    stroke<span class="op">=</span><span class="st">'white'</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>).properties(</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">700</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">500</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>).project(<span class="st">'equalEarth'</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Add bubbles sized by incident count</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>bubbles <span class="op">=</span> alt.Chart(country_counts).mark_circle(opacity<span class="op">=</span><span class="fl">0.6</span>, color<span class="op">=</span><span class="st">'firebrick'</span>).encode(</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    longitude<span class="op">=</span><span class="st">'Longitude:Q'</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    latitude<span class="op">=</span><span class="st">'Latitude:Q'</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>alt.Size(<span class="st">'Incident Count:Q'</span>, scale<span class="op">=</span>alt.Scale(<span class="bu">range</span><span class="op">=</span>[<span class="dv">10</span>, <span class="dv">1000</span>]), legend<span class="op">=</span>alt.Legend(title<span class="op">=</span><span class="st">"Incident Count"</span>)),</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[<span class="st">'Country:N'</span>, <span class="st">'Incident Count:Q'</span>]</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Combine map and bubbles</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> base <span class="op">+</span> bubbles</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>chart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+
+<style>
+  #altair-viz-e7be9821549e40c19ab8a580ab1ff83f.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-e7be9821549e40c19ab8a580ab1ff83f.vega-embed details,
+  #altair-viz-e7be9821549e40c19ab8a580ab1ff83f.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-e7be9821549e40c19ab8a580ab1ff83f"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-e7be9821549e40c19ab8a580ab1ff83f") {
+      outputDiv = document.getElementById("altair-viz-e7be9821549e40c19ab8a580ab1ff83f");
+    }
+
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.20.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      let deps = ["vega-embed"];
+      require(deps, displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.20.1"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "layer": [{"data": {"url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json", "format": {"feature": "countries", "type": "topojson"}}, "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}, "projection": {"type": "equalEarth"}}, {"data": {"name": "data-618a7836894e79ed6234079c2b3472b7"}, "mark": {"type": "circle", "color": "firebrick", "opacity": 0.6}, "encoding": {"latitude": {"field": "Latitude", "type": "quantitative"}, "longitude": {"field": "Longitude", "type": "quantitative"}, "size": {"field": "Incident Count", "legend": {"title": "Incident Count"}, "scale": {"range": [10, 1000]}, "type": "quantitative"}, "tooltip": [{"field": "Country", "type": "nominal"}, {"field": "Incident Count", "type": "quantitative"}]}}], "height": 500, "width": 700, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-618a7836894e79ed6234079c2b3472b7": [{"Country": "Afghanistan", "Incident Count": 610, "Latitude": 34.34196901330049, "Longitude": 67.3080050427422}, {"Country": "Algeria", "Incident Count": 2, "Latitude": 36.8293405, "Longitude": 3.38836625}, {"Country": "Angola", "Incident Count": 21, "Latitude": -11.612860933333334, "Longitude": 16.71746280952381}, {"Country": "Argentina", "Incident Count": 1, "Latitude": -34.603803, "Longitude": -58.381552}, {"Country": "Armenia", "Incident Count": 1, "Latitude": 40.182387, "Longitude": 44.511848}, {"Country": "Azerbaijan", "Incident Count": 1, "Latitude": 41.071472, "Longitude": 43.839254}, {"Country": "Bangladesh", "Incident Count": 29, "Latitude": 22.632494544444445, "Longitude": 91.31375861777778}, {"Country": "Benin", "Incident Count": 1, "Latitude": 9.30769, "Longitude": 2.315834}, {"Country": "Bolivia", "Incident Count": 2, "Latitude": -17.958399999999997, "Longitude": -65.6666665}, {"Country": "Botswana", "Incident Count": 1, "Latitude": -24.866667, "Longitude": 25.816667}, {"Country": "Burkina Faso", "Incident Count": 33, "Latitude": 13.264028433333333, "Longitude": -1.0136343121212121}, {"Country": "Burundi", "Incident Count": 28, "Latitude": -3.3966838285714287, "Longitude": 29.75740705357143}, {"Country": "Cambodia", "Incident Count": 4, "Latitude": 12.6424877625, "Longitude": 104.368240275}, {"Country": "Cameroon", "Incident Count": 51, "Latitude": 5.956715758823529, "Longitude": 10.884221233333333}, {"Country": "Central African Republic", "Incident Count": 142, "Latitude": 6.460455855442238, "Longitude": 19.504946860630934}, {"Country": "Chad", "Incident Count": 34, "Latitude": 13.47573938529412, "Longitude": 19.499637947058822}, {"Country": "Chechnya", "Incident Count": 26, "Latitude": 43.32640598076922, "Longitude": 45.62529748076923}, {"Country": "Chile", "Incident Count": 2, "Latitude": -33.46691250000001, "Longitude": -70.66632}, {"Country": "Colombia", "Incident Count": 17, "Latitude": 4.288034041176471, "Longitude": -74.55893048235293}, {"Country": "Congo", "Incident Count": 3, "Latitude": -3.0932172333333328, "Longitude": 14.53001289}, {"Country": "Cote D'Ivoire", "Incident Count": 7, "Latitude": 6.160374916666666, "Longitude": -5.4951132}, {"Country": "DR Congo", "Incident Count": 233, "Latitude": -1.8477940475789885, "Longitude": 28.07642699352469}, {"Country": "Dominican Republic", "Incident Count": 1, "Latitude": 18.466667, "Longitude": -69.95}, {"Country": "Ecuador", "Incident Count": 1, "Latitude": -1.17358, "Longitude": -79.2218}, {"Country": "Egypt", "Incident Count": 1, "Latitude": 30.044444, "Longitude": 31.235833}, {"Country": "El Salvador", "Incident Count": 7, "Latitude": 13.701891285714286, "Longitude": -89.26681328571429}, {"Country": "Eritrea", "Incident Count": 2, "Latitude": 15.60001595, "Longitude": 37.749983400000005}, {"Country": "Ethiopia", "Incident Count": 106, "Latitude": 10.806336294786643, "Longitude": 38.76756604289387}, {"Country": "Fiji", "Incident Count": 4, "Latitude": -18.1017866, "Longitude": 178.724151525}, {"Country": "Georgia", "Incident Count": 1, "Latitude": 42.14533005, "Longitude": 45.3025268}, {"Country": "Guatemala", "Incident Count": 8, "Latitude": 14.8465611625, "Longitude": -90.18251713625}, {"Country": "Guinea", "Incident Count": 9, "Latitude": 9.472621977777777, "Longitude": -11.08431178888889}, {"Country": "Guinea-Bissau", "Incident Count": 2, "Latitude": 11.853244, "Longitude": -15.578006}, {"Country": "Guyana", "Incident Count": 1, "Latitude": 5.0, "Longitude": -59.0}, {"Country": "Haiti", "Incident Count": 70, "Latitude": 18.663024733494247, "Longitude": -72.34545315997008}, {"Country": "Honduras", "Incident Count": 5, "Latitude": 14.7493205, "Longitude": -86.08185775}, {"Country": "India", "Incident Count": 6, "Latitude": 21.82009225, "Longitude": 81.71081096666667}, {"Country": "Indonesia", "Incident Count": 17, "Latitude": -1.624658361764706, "Longitude": 109.59930207941177}, {"Country": "Iran, Islamic Republic of", "Incident Count": 2, "Latitude": 35.689167, "Longitude": 51.388889}, {"Country": "Iraq", "Incident Count": 76, "Latitude": 33.59042147631579, "Longitude": 44.278947913815784}, {"Country": "Israel", "Incident Count": 7, "Latitude": 31.378452785714284, "Longitude": 34.47775907142857}, {"Country": "Jamaica", "Incident Count": 1, "Latitude": 17.989068, "Longitude": -76.791729}, {"Country": "Jordan", "Incident Count": 7, "Latitude": 31.81347397142857, "Longitude": 36.59450914285714}, {"Country": "Kashmir", "Incident Count": 1, "Latitude": 34.3752779, "Longitude": 73.4730602}, {"Country": "Kenya", "Incident Count": 65, "Latitude": 0.049066535384615396, "Longitude": 38.365470008307696}, {"Country": "Kosovo", "Incident Count": 4, "Latitude": 42.5810195875, "Longitude": 20.9620538}, {"Country": "Kyrgyzstan", "Incident Count": 3, "Latitude": 42.86187533333333, "Longitude": 74.58946933333333}, {"Country": "Lebanon", "Incident Count": 20, "Latitude": 33.50984056, "Longitude": 35.3887651}, {"Country": "Lesotho", "Incident Count": 3, "Latitude": -29.407975566666664, "Longitude": 27.765006433333337}, {"Country": "Liberia", "Incident Count": 9, "Latitude": 6.214554055555556, "Longitude": -9.91395111111111}, {"Country": "Libyan Arab Jamahiriya", "Incident Count": 20, "Latitude": 31.373348395, "Longitude": 15.57854464}, {"Country": "Madagascar", "Incident Count": 7, "Latitude": -22.460516514285718, "Longitude": 45.30729144285714}, {"Country": "Malawi", "Incident Count": 10, "Latitude": -13.96367518, "Longitude": 34.145905592}, {"Country": "Mali", "Incident Count": 126, "Latitude": 15.421323130765836, "Longitude": -2.6494601871452446}, {"Country": "Mauritania", "Incident Count": 3, "Latitude": 18.741763366666664, "Longitude": -15.701756766666668}, {"Country": "Mauritius", "Incident Count": 1, "Latitude": -20.166274, "Longitude": 57.502302}, {"Country": "Mexico", "Incident Count": 6, "Latitude": 18.9399485, "Longitude": -99.70225266666667}, {"Country": "Mozambique", "Incident Count": 21, "Latitude": -17.066044595238093, "Longitude": 36.855724566666666}, {"Country": "Myanmar", "Incident Count": 73, "Latitude": 19.991453243150684, "Longitude": 96.49759236849316}, {"Country": "Namibia", "Incident Count": 1, "Latitude": -22.57, "Longitude": 17.083611}, {"Country": "Nepal", "Incident Count": 3, "Latitude": 27.741094, "Longitude": 83.84060933333333}, {"Country": "Nicaragua", "Incident Count": 4, "Latitude": 12.806194999999999, "Longitude": -85.56269725}, {"Country": "Niger", "Incident Count": 20, "Latitude": 14.221106285, "Longitude": 5.63809886}, {"Country": "Nigeria", "Incident Count": 87, "Latitude": 11.111847765517242, "Longitude": 10.629936870114943}, {"Country": "Occupied Palestinian Territories", "Incident Count": 158, "Latitude": 31.551143103184714, "Longitude": 34.544358831847134}, {"Country": "Pakistan", "Incident Count": 113, "Latitude": 31.530237753097342, "Longitude": 70.12306239575221}, {"Country": "Papua New Guinea", "Incident Count": 7, "Latitude": -5.857654714285714, "Longitude": 145.046676}, {"Country": "Peru", "Incident Count": 1, "Latitude": -6.483333, "Longitude": -76.366667}, {"Country": "Philippines", "Incident Count": 15, "Latitude": 9.151456513333333, "Longitude": 122.7339962}, {"Country": "Poland", "Incident Count": 2, "Latitude": 52.2415915, "Longitude": 21.013202}, {"Country": "Rwanda", "Incident Count": 10, "Latitude": -1.7274117400000002, "Longitude": 29.84861806}, {"Country": "Saudi Arabia", "Incident Count": 1, "Latitude": 24.633333, "Longitude": 46.716667}, {"Country": "Senegal", "Incident Count": 5, "Latitude": 14.2900083, "Longitude": -17.062789102}, {"Country": "Sierra Leone", "Incident Count": 13, "Latitude": 8.341590676923078, "Longitude": -11.820643461538461}, {"Country": "Somalia", "Incident Count": 315, "Latitude": 3.900219307777778, "Longitude": 45.1596226843492}, {"Country": "South Africa", "Incident Count": 5, "Latitude": -26.75842844, "Longitude": 27.3252998}, {"Country": "South Sudan", "Incident Count": 583, "Latitude": 6.883658231649485, "Longitude": 31.163884786233353}, {"Country": "Sri Lanka", "Incident Count": 54, "Latitude": 8.367356274074075, "Longitude": 80.59134031481481}, {"Country": "Sudan", "Incident Count": 381, "Latitude": 12.879818832687516, "Longitude": 27.16682291554328}, {"Country": "Swaziland", "Incident Count": 1, "Latitude": -27.116667, "Longitude": 31.2}, {"Country": "Syrian Arab Republic", "Incident Count": 368, "Latitude": 35.239988046464525, "Longitude": 37.21524847240892}, {"Country": "Tajikistan", "Incident Count": 4, "Latitude": 38.6281733, "Longitude": 70.8156541}, {"Country": "Tanzania", "Incident Count": 12, "Latitude": -4.9499740333333335, "Longitude": 34.561694376666665}, {"Country": "Thailand", "Incident Count": 1, "Latitude": 6.8678652, "Longitude": 101.2504538}, {"Country": "Tunisia", "Incident Count": 4, "Latitude": 35.90168775, "Longitude": 10.44739725}, {"Country": "Turkey", "Incident Count": 5, "Latitude": 37.8952398, "Longitude": 36.644735}, {"Country": "Uganda", "Incident Count": 45, "Latitude": 1.7055089555555554, "Longitude": 32.65783326355555}, {"Country": "Ukraine", "Incident Count": 44, "Latitude": 48.56363791590909, "Longitude": 35.11424556136364}, {"Country": "Uruguay", "Incident Count": 1, "Latitude": -34.883611, "Longitude": -56.181944}, {"Country": "Venezuela", "Incident Count": 1, "Latitude": 8.13793, "Longitude": -63.548266}, {"Country": "Vietnam", "Incident Count": 1, "Latitude": 16.16667, "Longitude": 107.83333}, {"Country": "Western Sahara", "Incident Count": 1, "Latitude": 27.67111, "Longitude": -8.14744}, {"Country": "Yemen", "Incident Count": 106, "Latitude": 14.799060245219648, "Longitude": 44.322958441849046}, {"Country": "Zambia", "Incident Count": 3, "Latitude": -12.772763, "Longitude": 26.970504000000002}, {"Country": "Zimbabwe", "Incident Count": 2, "Latitude": -17.830469800000003, "Longitude": 31.048953949999998}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert types just in case</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Year'</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">'Year'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Month'</span>] <span class="op">=</span> pd.to_numeric(df[<span class="st">'Month'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Heatmap Data</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>heatmap_data <span class="op">=</span> df.groupby([<span class="st">'Year'</span>, <span class="st">'Month'</span>]).size().reset_index(name<span class="op">=</span><span class="st">'Incident Count'</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Totals per Year</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>year_totals <span class="op">=</span> df.groupby(<span class="st">'Year'</span>).size().reset_index(name<span class="op">=</span><span class="st">'Total Incidents'</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Totals per Month</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>month_totals <span class="op">=</span> df.groupby(<span class="st">'Month'</span>).size().reset_index(name<span class="op">=</span><span class="st">'Total Incidents'</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort months as 1 to 12 for consistency</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>month_order <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">13</span>))</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Heatmap: center</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>heatmap <span class="op">=</span> alt.Chart(heatmap_data).mark_rect().encode(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Year:O'</span>, title<span class="op">=</span><span class="st">'Year'</span>),</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'Month:O'</span>, sort<span class="op">=</span>month_order, title<span class="op">=</span><span class="st">'Month'</span>),</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">'Incident Count:Q'</span>, scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">'reds'</span>), title<span class="op">=</span><span class="st">'Incidents'</span>),</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[<span class="st">'Year:O'</span>, <span class="st">'Month:O'</span>, <span class="st">'Incident Count:Q'</span>]</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">500</span>, height<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Transparent spacer (dummy chart to offset left)</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>spacer <span class="op">=</span> alt.Chart(pd.DataFrame({<span class="st">'x'</span>: [<span class="dv">0</span>]})).mark_point(opacity<span class="op">=</span><span class="dv">0</span>).encode(</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'x:Q'</span>, axis<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">100</span>, height<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># width must match left_bar</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Top bar chart: Incidents by Year (aligned with heatmap x-axis)</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>top_bar <span class="op">=</span> alt.Chart(year_totals).mark_bar(color<span class="op">=</span><span class="st">'steelblue'</span>).encode(</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Year:O'</span>, title<span class="op">=</span><span class="va">None</span>),  <span class="co"># Must match heatmap x</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'Total Incidents:Q'</span>, title<span class="op">=</span><span class="st">'Incidents'</span>)</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">500</span>, height<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Left bar chart: Incidents by Month (flipped to match heatmap y-axis)</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>left_bar <span class="op">=</span> alt.Chart(month_totals).mark_bar(color<span class="op">=</span><span class="st">'steelblue'</span>).encode(</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'Month:O'</span>, sort<span class="op">=</span>month_order, title<span class="op">=</span><span class="va">None</span>),  <span class="co"># Must match heatmap y</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Total Incidents:Q'</span>, title<span class="op">=</span><span class="st">'Incidents'</span>, scale<span class="op">=</span>alt.Scale(reverse<span class="op">=</span><span class="va">True</span>))  <span class="co"># Reverse for 180 flip</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">100</span>, height<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Middle row: left + heatmap</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>middle <span class="op">=</span> alt.hconcat(</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    left_bar,</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    heatmap</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>).resolve_scale(</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'shared'</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>top_row <span class="op">=</span> alt.hconcat(</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    spacer,</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    top_bar</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Final layout: top + (left + heatmap)</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>final_chart <span class="op">=</span> alt.vconcat(</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>    top_row,</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>    middle</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>).resolve_scale(</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'shared'</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>).configure_view(</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    stroke<span class="op">=</span><span class="va">None</span>  <span class="co"># Remove borders from all charts</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>final_chart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+
+<style>
+  #altair-viz-23d0fce2d5a845568ead797e73b2e581.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-23d0fce2d5a845568ead797e73b2e581.vega-embed details,
+  #altair-viz-23d0fce2d5a845568ead797e73b2e581.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-23d0fce2d5a845568ead797e73b2e581"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-23d0fce2d5a845568ead797e73b2e581") {
+      outputDiv = document.getElementById("altair-viz-23d0fce2d5a845568ead797e73b2e581");
+    }
+
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.20.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      let deps = ["vega-embed"];
+      require(deps, displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.20.1"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300, "stroke": null}}, "vconcat": [{"hconcat": [{"data": {"name": "data-d285a7403ed98ae579761d64a864032b"}, "mark": {"type": "point", "opacity": 0}, "encoding": {"x": {"axis": null, "field": "x", "type": "quantitative"}}, "height": 100, "width": 100}, {"data": {"name": "data-b03c1ede3e1d8eddf278bb373b05479a"}, "mark": {"type": "bar", "color": "steelblue"}, "encoding": {"x": {"field": "Year", "title": null, "type": "ordinal"}, "y": {"field": "Total Incidents", "title": "Incidents", "type": "quantitative"}}, "height": 100, "width": 500}]}, {"hconcat": [{"data": {"name": "data-d80ac319ffc8da8c6792ed4e2d8c059c"}, "mark": {"type": "bar", "color": "steelblue"}, "encoding": {"x": {"field": "Total Incidents", "scale": {"reverse": true}, "title": "Incidents", "type": "quantitative"}, "y": {"field": "Month", "sort": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "title": null, "type": "ordinal"}}, "height": 300, "width": 100}, {"data": {"name": "data-2f2baad8e095cb991ada41696e240e2d"}, "mark": {"type": "rect"}, "encoding": {"color": {"field": "Incident Count", "scale": {"scheme": "reds"}, "title": "Incidents", "type": "quantitative"}, "tooltip": [{"field": "Year", "type": "ordinal"}, {"field": "Month", "type": "ordinal"}, {"field": "Incident Count", "type": "quantitative"}], "x": {"field": "Year", "title": "Year", "type": "ordinal"}, "y": {"field": "Month", "sort": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "title": "Month", "type": "ordinal"}}, "height": 300, "width": 500}], "resolve": {"scale": {"y": "shared"}}}], "resolve": {"scale": {"x": "shared"}}, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-d285a7403ed98ae579761d64a864032b": [{"x": 0}], "data-b03c1ede3e1d8eddf278bb373b05479a": [{"Year": 1997, "Total Incidents": 34}, {"Year": 1998, "Total Incidents": 26}, {"Year": 1999, "Total Incidents": 32}, {"Year": 2000, "Total Incidents": 42}, {"Year": 2001, "Total Incidents": 29}, {"Year": 2002, "Total Incidents": 46}, {"Year": 2003, "Total Incidents": 63}, {"Year": 2004, "Total Incidents": 64}, {"Year": 2005, "Total Incidents": 74}, {"Year": 2006, "Total Incidents": 107}, {"Year": 2007, "Total Incidents": 124}, {"Year": 2008, "Total Incidents": 165}, {"Year": 2009, "Total Incidents": 156}, {"Year": 2010, "Total Incidents": 132}, {"Year": 2011, "Total Incidents": 152}, {"Year": 2012, "Total Incidents": 170}, {"Year": 2013, "Total Incidents": 265}, {"Year": 2014, "Total Incidents": 194}, {"Year": 2015, "Total Incidents": 150}, {"Year": 2016, "Total Incidents": 164}, {"Year": 2017, "Total Incidents": 160}, {"Year": 2018, "Total Incidents": 229}, {"Year": 2019, "Total Incidents": 276}, {"Year": 2020, "Total Incidents": 283}, {"Year": 2021, "Total Incidents": 272}, {"Year": 2022, "Total Incidents": 247}, {"Year": 2023, "Total Incidents": 281}, {"Year": 2024, "Total Incidents": 353}, {"Year": 2025, "Total Incidents": 47}], "data-d80ac319ffc8da8c6792ed4e2d8c059c": [{"Month": 1.0, "Total Incidents": 383}, {"Month": 2.0, "Total Incidents": 315}, {"Month": 3.0, "Total Incidents": 337}, {"Month": 4.0, "Total Incidents": 327}, {"Month": 5.0, "Total Incidents": 344}, {"Month": 6.0, "Total Incidents": 407}, {"Month": 7.0, "Total Incidents": 401}, {"Month": 8.0, "Total Incidents": 341}, {"Month": 9.0, "Total Incidents": 344}, {"Month": 10.0, "Total Incidents": 397}, {"Month": 11.0, "Total Incidents": 374}, {"Month": 12.0, "Total Incidents": 319}], "data-2f2baad8e095cb991ada41696e240e2d": [{"Year": 1997, "Month": 1.0, "Incident Count": 2}, {"Year": 1997, "Month": 2.0, "Incident Count": 3}, {"Year": 1997, "Month": 5.0, "Incident Count": 2}, {"Year": 1997, "Month": 6.0, "Incident Count": 7}, {"Year": 1997, "Month": 7.0, "Incident Count": 5}, {"Year": 1997, "Month": 8.0, "Incident Count": 2}, {"Year": 1997, "Month": 9.0, "Incident Count": 3}, {"Year": 1997, "Month": 10.0, "Incident Count": 5}, {"Year": 1997, "Month": 11.0, "Incident Count": 3}, {"Year": 1997, "Month": 12.0, "Incident Count": 2}, {"Year": 1998, "Month": 1.0, "Incident Count": 3}, {"Year": 1998, "Month": 3.0, "Incident Count": 3}, {"Year": 1998, "Month": 4.0, "Incident Count": 3}, {"Year": 1998, "Month": 6.0, "Incident Count": 3}, {"Year": 1998, "Month": 7.0, "Incident Count": 5}, {"Year": 1998, "Month": 8.0, "Incident Count": 2}, {"Year": 1998, "Month": 9.0, "Incident Count": 2}, {"Year": 1998, "Month": 11.0, "Incident Count": 2}, {"Year": 1998, "Month": 12.0, "Incident Count": 1}, {"Year": 1999, "Month": 1.0, "Incident Count": 5}, {"Year": 1999, "Month": 2.0, "Incident Count": 1}, {"Year": 1999, "Month": 3.0, "Incident Count": 1}, {"Year": 1999, "Month": 4.0, "Incident Count": 4}, {"Year": 1999, "Month": 5.0, "Incident Count": 2}, {"Year": 1999, "Month": 6.0, "Incident Count": 4}, {"Year": 1999, "Month": 7.0, "Incident Count": 1}, {"Year": 1999, "Month": 8.0, "Incident Count": 3}, {"Year": 1999, "Month": 9.0, "Incident Count": 3}, {"Year": 1999, "Month": 10.0, "Incident Count": 4}, {"Year": 1999, "Month": 11.0, "Incident Count": 3}, {"Year": 2000, "Month": 1.0, "Incident Count": 8}, {"Year": 2000, "Month": 2.0, "Incident Count": 2}, {"Year": 2000, "Month": 3.0, "Incident Count": 3}, {"Year": 2000, "Month": 4.0, "Incident Count": 3}, {"Year": 2000, "Month": 5.0, "Incident Count": 4}, {"Year": 2000, "Month": 6.0, "Incident Count": 3}, {"Year": 2000, "Month": 7.0, "Incident Count": 4}, {"Year": 2000, "Month": 8.0, "Incident Count": 4}, {"Year": 2000, "Month": 9.0, "Incident Count": 3}, {"Year": 2000, "Month": 11.0, "Incident Count": 1}, {"Year": 2000, "Month": 12.0, "Incident Count": 6}, {"Year": 2001, "Month": 1.0, "Incident Count": 1}, {"Year": 2001, "Month": 3.0, "Incident Count": 3}, {"Year": 2001, "Month": 4.0, "Incident Count": 4}, {"Year": 2001, "Month": 5.0, "Incident Count": 4}, {"Year": 2001, "Month": 6.0, "Incident Count": 2}, {"Year": 2001, "Month": 7.0, "Incident Count": 5}, {"Year": 2001, "Month": 8.0, "Incident Count": 1}, {"Year": 2001, "Month": 9.0, "Incident Count": 3}, {"Year": 2001, "Month": 10.0, "Incident Count": 1}, {"Year": 2001, "Month": 11.0, "Incident Count": 1}, {"Year": 2001, "Month": 12.0, "Incident Count": 3}, {"Year": 2002, "Month": 1.0, "Incident Count": 2}, {"Year": 2002, "Month": 2.0, "Incident Count": 6}, {"Year": 2002, "Month": 3.0, "Incident Count": 2}, {"Year": 2002, "Month": 4.0, "Incident Count": 5}, {"Year": 2002, "Month": 7.0, "Incident Count": 3}, {"Year": 2002, "Month": 8.0, "Incident Count": 5}, {"Year": 2002, "Month": 9.0, "Incident Count": 5}, {"Year": 2002, "Month": 10.0, "Incident Count": 2}, {"Year": 2002, "Month": 11.0, "Incident Count": 10}, {"Year": 2002, "Month": 12.0, "Incident Count": 3}, {"Year": 2003, "Month": 1.0, "Incident Count": 2}, {"Year": 2003, "Month": 2.0, "Incident Count": 4}, {"Year": 2003, "Month": 3.0, "Incident Count": 6}, {"Year": 2003, "Month": 4.0, "Incident Count": 4}, {"Year": 2003, "Month": 5.0, "Incident Count": 5}, {"Year": 2003, "Month": 6.0, "Incident Count": 2}, {"Year": 2003, "Month": 7.0, "Incident Count": 8}, {"Year": 2003, "Month": 8.0, "Incident Count": 8}, {"Year": 2003, "Month": 9.0, "Incident Count": 7}, {"Year": 2003, "Month": 10.0, "Incident Count": 6}, {"Year": 2003, "Month": 11.0, "Incident Count": 6}, {"Year": 2003, "Month": 12.0, "Incident Count": 3}, {"Year": 2004, "Month": 1.0, "Incident Count": 3}, {"Year": 2004, "Month": 2.0, "Incident Count": 5}, {"Year": 2004, "Month": 3.0, "Incident Count": 3}, {"Year": 2004, "Month": 4.0, "Incident Count": 8}, {"Year": 2004, "Month": 5.0, "Incident Count": 4}, {"Year": 2004, "Month": 6.0, "Incident Count": 10}, {"Year": 2004, "Month": 7.0, "Incident Count": 2}, {"Year": 2004, "Month": 8.0, "Incident Count": 6}, {"Year": 2004, "Month": 9.0, "Incident Count": 4}, {"Year": 2004, "Month": 10.0, "Incident Count": 5}, {"Year": 2004, "Month": 11.0, "Incident Count": 5}, {"Year": 2004, "Month": 12.0, "Incident Count": 8}, {"Year": 2005, "Month": 1.0, "Incident Count": 8}, {"Year": 2005, "Month": 2.0, "Incident Count": 3}, {"Year": 2005, "Month": 3.0, "Incident Count": 5}, {"Year": 2005, "Month": 4.0, "Incident Count": 7}, {"Year": 2005, "Month": 5.0, "Incident Count": 7}, {"Year": 2005, "Month": 6.0, "Incident Count": 9}, {"Year": 2005, "Month": 7.0, "Incident Count": 7}, {"Year": 2005, "Month": 8.0, "Incident Count": 2}, {"Year": 2005, "Month": 9.0, "Incident Count": 4}, {"Year": 2005, "Month": 10.0, "Incident Count": 11}, {"Year": 2005, "Month": 11.0, "Incident Count": 3}, {"Year": 2005, "Month": 12.0, "Incident Count": 8}, {"Year": 2006, "Month": 1.0, "Incident Count": 4}, {"Year": 2006, "Month": 2.0, "Incident Count": 1}, {"Year": 2006, "Month": 3.0, "Incident Count": 7}, {"Year": 2006, "Month": 4.0, "Incident Count": 7}, {"Year": 2006, "Month": 5.0, "Incident Count": 12}, {"Year": 2006, "Month": 6.0, "Incident Count": 9}, {"Year": 2006, "Month": 7.0, "Incident Count": 13}, {"Year": 2006, "Month": 8.0, "Incident Count": 11}, {"Year": 2006, "Month": 9.0, "Incident Count": 11}, {"Year": 2006, "Month": 10.0, "Incident Count": 5}, {"Year": 2006, "Month": 11.0, "Incident Count": 13}, {"Year": 2006, "Month": 12.0, "Incident Count": 10}, {"Year": 2007, "Month": 1.0, "Incident Count": 5}, {"Year": 2007, "Month": 2.0, "Incident Count": 7}, {"Year": 2007, "Month": 3.0, "Incident Count": 7}, {"Year": 2007, "Month": 4.0, "Incident Count": 13}, {"Year": 2007, "Month": 5.0, "Incident Count": 11}, {"Year": 2007, "Month": 6.0, "Incident Count": 15}, {"Year": 2007, "Month": 7.0, "Incident Count": 9}, {"Year": 2007, "Month": 8.0, "Incident Count": 6}, {"Year": 2007, "Month": 9.0, "Incident Count": 12}, {"Year": 2007, "Month": 10.0, "Incident Count": 13}, {"Year": 2007, "Month": 11.0, "Incident Count": 13}, {"Year": 2007, "Month": 12.0, "Incident Count": 11}, {"Year": 2008, "Month": 1.0, "Incident Count": 13}, {"Year": 2008, "Month": 2.0, "Incident Count": 7}, {"Year": 2008, "Month": 3.0, "Incident Count": 13}, {"Year": 2008, "Month": 4.0, "Incident Count": 14}, {"Year": 2008, "Month": 5.0, "Incident Count": 16}, {"Year": 2008, "Month": 6.0, "Incident Count": 17}, {"Year": 2008, "Month": 7.0, "Incident Count": 16}, {"Year": 2008, "Month": 8.0, "Incident Count": 15}, {"Year": 2008, "Month": 9.0, "Incident Count": 13}, {"Year": 2008, "Month": 10.0, "Incident Count": 15}, {"Year": 2008, "Month": 11.0, "Incident Count": 11}, {"Year": 2008, "Month": 12.0, "Incident Count": 12}, {"Year": 2009, "Month": 1.0, "Incident Count": 19}, {"Year": 2009, "Month": 2.0, "Incident Count": 8}, {"Year": 2009, "Month": 3.0, "Incident Count": 22}, {"Year": 2009, "Month": 4.0, "Incident Count": 20}, {"Year": 2009, "Month": 5.0, "Incident Count": 11}, {"Year": 2009, "Month": 6.0, "Incident Count": 13}, {"Year": 2009, "Month": 7.0, "Incident Count": 16}, {"Year": 2009, "Month": 8.0, "Incident Count": 12}, {"Year": 2009, "Month": 9.0, "Incident Count": 9}, {"Year": 2009, "Month": 10.0, "Incident Count": 8}, {"Year": 2009, "Month": 11.0, "Incident Count": 11}, {"Year": 2009, "Month": 12.0, "Incident Count": 7}, {"Year": 2010, "Month": 1.0, "Incident Count": 8}, {"Year": 2010, "Month": 2.0, "Incident Count": 9}, {"Year": 2010, "Month": 3.0, "Incident Count": 7}, {"Year": 2010, "Month": 4.0, "Incident Count": 8}, {"Year": 2010, "Month": 5.0, "Incident Count": 7}, {"Year": 2010, "Month": 6.0, "Incident Count": 10}, {"Year": 2010, "Month": 7.0, "Incident Count": 16}, {"Year": 2010, "Month": 8.0, "Incident Count": 10}, {"Year": 2010, "Month": 9.0, "Incident Count": 8}, {"Year": 2010, "Month": 10.0, "Incident Count": 24}, {"Year": 2010, "Month": 11.0, "Incident Count": 17}, {"Year": 2010, "Month": 12.0, "Incident Count": 8}, {"Year": 2011, "Month": 1.0, "Incident Count": 15}, {"Year": 2011, "Month": 2.0, "Incident Count": 12}, {"Year": 2011, "Month": 3.0, "Incident Count": 9}, {"Year": 2011, "Month": 4.0, "Incident Count": 13}, {"Year": 2011, "Month": 5.0, "Incident Count": 9}, {"Year": 2011, "Month": 6.0, "Incident Count": 21}, {"Year": 2011, "Month": 7.0, "Incident Count": 8}, {"Year": 2011, "Month": 8.0, "Incident Count": 12}, {"Year": 2011, "Month": 9.0, "Incident Count": 11}, {"Year": 2011, "Month": 10.0, "Incident Count": 17}, {"Year": 2011, "Month": 11.0, "Incident Count": 16}, {"Year": 2011, "Month": 12.0, "Incident Count": 9}, {"Year": 2012, "Month": 1.0, "Incident Count": 18}, {"Year": 2012, "Month": 2.0, "Incident Count": 9}, {"Year": 2012, "Month": 3.0, "Incident Count": 11}, {"Year": 2012, "Month": 4.0, "Incident Count": 11}, {"Year": 2012, "Month": 5.0, "Incident Count": 15}, {"Year": 2012, "Month": 6.0, "Incident Count": 14}, {"Year": 2012, "Month": 7.0, "Incident Count": 17}, {"Year": 2012, "Month": 8.0, "Incident Count": 9}, {"Year": 2012, "Month": 9.0, "Incident Count": 11}, {"Year": 2012, "Month": 10.0, "Incident Count": 13}, {"Year": 2012, "Month": 11.0, "Incident Count": 11}, {"Year": 2012, "Month": 12.0, "Incident Count": 22}, {"Year": 2013, "Month": 1.0, "Incident Count": 19}, {"Year": 2013, "Month": 2.0, "Incident Count": 13}, {"Year": 2013, "Month": 3.0, "Incident Count": 23}, {"Year": 2013, "Month": 4.0, "Incident Count": 14}, {"Year": 2013, "Month": 5.0, "Incident Count": 24}, {"Year": 2013, "Month": 6.0, "Incident Count": 25}, {"Year": 2013, "Month": 7.0, "Incident Count": 24}, {"Year": 2013, "Month": 8.0, "Incident Count": 22}, {"Year": 2013, "Month": 9.0, "Incident Count": 22}, {"Year": 2013, "Month": 10.0, "Incident Count": 20}, {"Year": 2013, "Month": 11.0, "Incident Count": 24}, {"Year": 2013, "Month": 12.0, "Incident Count": 22}, {"Year": 2014, "Month": 1.0, "Incident Count": 21}, {"Year": 2014, "Month": 2.0, "Incident Count": 13}, {"Year": 2014, "Month": 3.0, "Incident Count": 13}, {"Year": 2014, "Month": 4.0, "Incident Count": 16}, {"Year": 2014, "Month": 5.0, "Incident Count": 14}, {"Year": 2014, "Month": 6.0, "Incident Count": 15}, {"Year": 2014, "Month": 7.0, "Incident Count": 24}, {"Year": 2014, "Month": 8.0, "Incident Count": 25}, {"Year": 2014, "Month": 9.0, "Incident Count": 12}, {"Year": 2014, "Month": 10.0, "Incident Count": 11}, {"Year": 2014, "Month": 11.0, "Incident Count": 15}, {"Year": 2014, "Month": 12.0, "Incident Count": 14}, {"Year": 2015, "Month": 1.0, "Incident Count": 9}, {"Year": 2015, "Month": 2.0, "Incident Count": 14}, {"Year": 2015, "Month": 3.0, "Incident Count": 12}, {"Year": 2015, "Month": 4.0, "Incident Count": 15}, {"Year": 2015, "Month": 5.0, "Incident Count": 9}, {"Year": 2015, "Month": 6.0, "Incident Count": 13}, {"Year": 2015, "Month": 7.0, "Incident Count": 6}, {"Year": 2015, "Month": 8.0, "Incident Count": 16}, {"Year": 2015, "Month": 9.0, "Incident Count": 18}, {"Year": 2015, "Month": 10.0, "Incident Count": 11}, {"Year": 2015, "Month": 11.0, "Incident Count": 9}, {"Year": 2015, "Month": 12.0, "Incident Count": 16}, {"Year": 2016, "Month": 1.0, "Incident Count": 15}, {"Year": 2016, "Month": 2.0, "Incident Count": 13}, {"Year": 2016, "Month": 3.0, "Incident Count": 13}, {"Year": 2016, "Month": 4.0, "Incident Count": 12}, {"Year": 2016, "Month": 5.0, "Incident Count": 11}, {"Year": 2016, "Month": 6.0, "Incident Count": 18}, {"Year": 2016, "Month": 7.0, "Incident Count": 17}, {"Year": 2016, "Month": 8.0, "Incident Count": 12}, {"Year": 2016, "Month": 9.0, "Incident Count": 16}, {"Year": 2016, "Month": 10.0, "Incident Count": 12}, {"Year": 2016, "Month": 11.0, "Incident Count": 14}, {"Year": 2016, "Month": 12.0, "Incident Count": 11}, {"Year": 2017, "Month": 1.0, "Incident Count": 10}, {"Year": 2017, "Month": 2.0, "Incident Count": 9}, {"Year": 2017, "Month": 3.0, "Incident Count": 16}, {"Year": 2017, "Month": 4.0, "Incident Count": 15}, {"Year": 2017, "Month": 5.0, "Incident Count": 9}, {"Year": 2017, "Month": 6.0, "Incident Count": 13}, {"Year": 2017, "Month": 7.0, "Incident Count": 14}, {"Year": 2017, "Month": 8.0, "Incident Count": 13}, {"Year": 2017, "Month": 9.0, "Incident Count": 16}, {"Year": 2017, "Month": 10.0, "Incident Count": 15}, {"Year": 2017, "Month": 11.0, "Incident Count": 16}, {"Year": 2017, "Month": 12.0, "Incident Count": 13}, {"Year": 2018, "Month": 1.0, "Incident Count": 18}, {"Year": 2018, "Month": 2.0, "Incident Count": 24}, {"Year": 2018, "Month": 3.0, "Incident Count": 24}, {"Year": 2018, "Month": 4.0, "Incident Count": 22}, {"Year": 2018, "Month": 5.0, "Incident Count": 25}, {"Year": 2018, "Month": 6.0, "Incident Count": 22}, {"Year": 2018, "Month": 7.0, "Incident Count": 20}, {"Year": 2018, "Month": 8.0, "Incident Count": 18}, {"Year": 2018, "Month": 9.0, "Incident Count": 10}, {"Year": 2018, "Month": 10.0, "Incident Count": 18}, {"Year": 2018, "Month": 11.0, "Incident Count": 19}, {"Year": 2018, "Month": 12.0, "Incident Count": 7}, {"Year": 2019, "Month": 1.0, "Incident Count": 20}, {"Year": 2019, "Month": 2.0, "Incident Count": 17}, {"Year": 2019, "Month": 3.0, "Incident Count": 22}, {"Year": 2019, "Month": 4.0, "Incident Count": 18}, {"Year": 2019, "Month": 5.0, "Incident Count": 20}, {"Year": 2019, "Month": 6.0, "Incident Count": 21}, {"Year": 2019, "Month": 7.0, "Incident Count": 35}, {"Year": 2019, "Month": 8.0, "Incident Count": 27}, {"Year": 2019, "Month": 9.0, "Incident Count": 24}, {"Year": 2019, "Month": 10.0, "Incident Count": 21}, {"Year": 2019, "Month": 11.0, "Incident Count": 29}, {"Year": 2019, "Month": 12.0, "Incident Count": 22}, {"Year": 2020, "Month": 1.0, "Incident Count": 30}, {"Year": 2020, "Month": 2.0, "Incident Count": 29}, {"Year": 2020, "Month": 3.0, "Incident Count": 14}, {"Year": 2020, "Month": 4.0, "Incident Count": 18}, {"Year": 2020, "Month": 5.0, "Incident Count": 25}, {"Year": 2020, "Month": 6.0, "Incident Count": 25}, {"Year": 2020, "Month": 7.0, "Incident Count": 24}, {"Year": 2020, "Month": 8.0, "Incident Count": 17}, {"Year": 2020, "Month": 9.0, "Incident Count": 27}, {"Year": 2020, "Month": 10.0, "Incident Count": 29}, {"Year": 2020, "Month": 11.0, "Incident Count": 26}, {"Year": 2020, "Month": 12.0, "Incident Count": 19}, {"Year": 2021, "Month": 1.0, "Incident Count": 23}, {"Year": 2021, "Month": 2.0, "Incident Count": 24}, {"Year": 2021, "Month": 3.0, "Incident Count": 24}, {"Year": 2021, "Month": 4.0, "Incident Count": 16}, {"Year": 2021, "Month": 5.0, "Incident Count": 27}, {"Year": 2021, "Month": 6.0, "Incident Count": 32}, {"Year": 2021, "Month": 7.0, "Incident Count": 25}, {"Year": 2021, "Month": 8.0, "Incident Count": 20}, {"Year": 2021, "Month": 9.0, "Incident Count": 17}, {"Year": 2021, "Month": 10.0, "Incident Count": 24}, {"Year": 2021, "Month": 11.0, "Incident Count": 16}, {"Year": 2021, "Month": 12.0, "Incident Count": 24}, {"Year": 2022, "Month": 1.0, "Incident Count": 27}, {"Year": 2022, "Month": 2.0, "Incident Count": 24}, {"Year": 2022, "Month": 3.0, "Incident Count": 30}, {"Year": 2022, "Month": 4.0, "Incident Count": 16}, {"Year": 2022, "Month": 5.0, "Incident Count": 17}, {"Year": 2022, "Month": 6.0, "Incident Count": 17}, {"Year": 2022, "Month": 7.0, "Incident Count": 25}, {"Year": 2022, "Month": 8.0, "Incident Count": 14}, {"Year": 2022, "Month": 9.0, "Incident Count": 16}, {"Year": 2022, "Month": 10.0, "Incident Count": 26}, {"Year": 2022, "Month": 11.0, "Incident Count": 17}, {"Year": 2022, "Month": 12.0, "Incident Count": 18}, {"Year": 2023, "Month": 1.0, "Incident Count": 21}, {"Year": 2023, "Month": 2.0, "Incident Count": 18}, {"Year": 2023, "Month": 3.0, "Incident Count": 20}, {"Year": 2023, "Month": 4.0, "Incident Count": 27}, {"Year": 2023, "Month": 5.0, "Incident Count": 18}, {"Year": 2023, "Month": 6.0, "Incident Count": 29}, {"Year": 2023, "Month": 7.0, "Incident Count": 22}, {"Year": 2023, "Month": 8.0, "Incident Count": 23}, {"Year": 2023, "Month": 9.0, "Incident Count": 23}, {"Year": 2023, "Month": 10.0, "Incident Count": 34}, {"Year": 2023, "Month": 11.0, "Incident Count": 30}, {"Year": 2023, "Month": 12.0, "Incident Count": 16}, {"Year": 2024, "Month": 1.0, "Incident Count": 23}, {"Year": 2024, "Month": 2.0, "Incident Count": 26}, {"Year": 2024, "Month": 3.0, "Incident Count": 23}, {"Year": 2024, "Month": 4.0, "Incident Count": 14}, {"Year": 2024, "Month": 5.0, "Incident Count": 36}, {"Year": 2024, "Month": 6.0, "Incident Count": 38}, {"Year": 2024, "Month": 7.0, "Incident Count": 30}, {"Year": 2024, "Month": 8.0, "Incident Count": 26}, {"Year": 2024, "Month": 9.0, "Incident Count": 34}, {"Year": 2024, "Month": 10.0, "Incident Count": 47}, {"Year": 2024, "Month": 11.0, "Incident Count": 33}, {"Year": 2024, "Month": 12.0, "Incident Count": 23}, {"Year": 2025, "Month": 1.0, "Incident Count": 31}, {"Year": 2025, "Month": 2.0, "Incident Count": 14}, {"Year": 2025, "Month": 3.0, "Incident Count": 1}, {"Year": 2025, "Month": 12.0, "Incident Count": 1}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
